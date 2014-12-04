@@ -112,7 +112,7 @@ class Dsform {
 			)
 		);
 		if ($ifcounter == true) {
-			$html .= '<span class="input-group-addon" id="' . "#counter" . $name . '">0</span>';
+			$html .= '<span class="input-group-addon" id="' . "counter" . $name . '">0</span>';
 			$this->addJs("$('#" . $name . "').contarCaracteres('#counter" . $name . "');");
 		} else {
 			if (!$this->errors->isEmpty()){
