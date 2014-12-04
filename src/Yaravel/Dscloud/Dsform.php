@@ -44,7 +44,7 @@ class Dsform {
 		$html .= '</div>';
 		return $html;
 	}
-	
+
 	public function errors(){
 		if (!$this->errors->isEmpty()){
 			$html = '<div class="alert alert-danger" role="alert">';
@@ -119,7 +119,7 @@ class Dsform {
 		$html .= '</div>';
 		return $html;
 	}
-	public function headerSection($value='')	{
+	public function headerSection($h2 = 'Panel Administrador del Sitio Web', $h5 = 'Bienvenido Usuario.') {
 		$html = '<div class="row">';
 		$html .= '<div class="col-md-12">';
 		$html .= '<h2>' . $h2 . '</h2>';
