@@ -46,7 +46,7 @@ class Dsform {
 		return $html;
 	}
 
-	public function text($name, $ifcounter = false) {
+	public function text($name, $placeholder, $ifcounter = false) {
 		$class = '';
 		if (!$this->errors->isEmpty()){
 			if ($this->errors->first($name)) {
@@ -70,7 +70,7 @@ class Dsform {
 				'id' => "title",
 				'class' => "form-control input-lg",
 				'maxlength' => "40",
-				'placeholder' => "Titulo de la Publicación"));
+				'placeholder' => $placeholder));
 		if ($ifcounter == true) {
 			$html .= '<span class="input-group-addon" id="counterTitle">0</span>';
 		} else {
