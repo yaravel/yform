@@ -83,8 +83,24 @@ class Dsform {
 		return $html;
 	}
 
-	public function text($name, $placeholder, $ifcounter = false) {
+	public function input($input = 'text', $name, $placeholder, $options = array()) {
 		$class = '';
+		// Check if counter
+		if (array_key_exists('counter', $options)) {
+			if ($options['counter'] == 1) {
+				$ifcounter = true;
+			} else {
+				$ifcounter = false;
+			}
+			unset($options['counter']);
+		} else {
+			$ifcounter = false;
+		}
+		// Check if class
+		if (!array_key_exists('class', $options)) {
+			$options['class'] = "form-control input-lg";
+		}
+		
 		if (!$this->errors->isEmpty()){
 			if ($this->errors->first($name)) {
 				$class .= 'has-error';
@@ -100,16 +116,11 @@ class Dsform {
 			$class .= ' has-feedback';
 		}
 		$html  = '<div class="form-group ' . $class . '">';
-		$html .= Form::text($name, Input::old(
+		$html .= Form::{$input}($name, Input::old(
 				$name,
 				isset($this->values->{$name}) ? $this->values->{$name} : null
 			),
-			array(
-				'id' => $name,
-				'class' => "form-control input-lg",
-				'maxlength' => "40",
-				'placeholder' => $placeholder
-			)
+			$options
 		);
 		if ($ifcounter == true) {
 			$html .= '<span class="input-group-addon" id="' . "counter" . $name . '">0</span>';
@@ -122,6 +133,15 @@ class Dsform {
 		$html .= '</div>';
 		return $html;
 	}
+
+	public function text($name, $placeholder, $options = array()) {
+		return $this->input('text', $name, $placeholder, $options);
+	}
+
+	public function textarea($name, $placeholder, $options = array()) {
+		return $this->input('textarea', $name, $placeholder, $options);
+	}
+
 	public function headerSection($h2 = 'Panel Administrador del Sitio Web', $h5 = 'Bienvenido Usuario.') {
 		$html = '<div class="row">';
 		$html .= '<div class="col-md-12">';
