@@ -56,7 +56,7 @@
 		});
 		@yield('script')
 
-		{{ DSF::js }}
+		{{ DSF::printJS() }}
 	</script>
 </body>
 </html>

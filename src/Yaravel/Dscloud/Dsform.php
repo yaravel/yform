@@ -14,6 +14,9 @@ class Dsform {
 	public function addJs($js) {
 		$this->js .= $js . "\n";
 	}
+	public function printJS($value='') {
+		return $this->js;
+	}
 	public function init($header = 'Titulo Form', $files = false, $values, $errors){
 		$this->errors = $errors;
 		$this->values = $values;
