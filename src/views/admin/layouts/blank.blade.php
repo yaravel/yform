@@ -55,6 +55,8 @@
 			height: 200
 		});
 		@yield('script')
+
+		{{ DSF::js }}
 	</script>
 </body>
 </html>

@@ -9,7 +9,11 @@ class Dsform {
 
 	public $errors;
 	public $values;
+	public $js = '';
 
+	public function addJs($js) {
+		$this->js .= $js . "\n";
+	}
 	public function init($header = 'Titulo Form', $files = false, $values, $errors){
 		$this->errors = $errors;
 		$this->values = $values;
@@ -27,7 +31,20 @@ class Dsform {
 		$html .= $this->errors();
 		return $html;
 	}
-
+	public function buttonSection($value='') {
+		$html  = $this->panelBodyClose;
+		$html .= $this->panelFooterStart;
+		return $html;
+	}
+	public function close($value='') {
+		$html  = $this->panelFooterClose;
+		$html .= '</div>';
+		$html .= Form::close();
+		$html .= '</div>';
+		$html .= '</div>';
+		return $html;
+	}
+	
 	public function errors(){
 		if (!$this->errors->isEmpty()){
 			$html = '<div class="alert alert-danger" role="alert">';
@@ -43,6 +60,23 @@ class Dsform {
 		$html  = '<div class="panel-body">';
 		$html .= '<div class="row">';
 		$html .= '<div class="col-sm-12">';
+		return $html;
+	}
+
+	public function panelBodyClose() {
+		$html  = '</div>';
+		$html .= '</div>';
+		$html .= '</div>';
+		return $html;
+	}
+
+	public function panelFooterStart() {
+		$html  = '<div class="panel-footer">';
+		return $html;
+	}
+
+	public function panelFooterClose() {
+		$html  = '</div>';
 		return $html;
 	}
 
@@ -64,21 +98,35 @@ class Dsform {
 		}
 		$html  = '<div class="form-group ' . $class . '">';
 		$html .= Form::text($name, Input::old(
-			$name,
-			isset($this->values->{$name}) ? $this->values->{$name} : null),
+				$name,
+				isset($this->values->{$name}) ? $this->values->{$name} : null
+			),
 			array(
-				'id' => "title",
+				'id' => $name,
 				'class' => "form-control input-lg",
 				'maxlength' => "40",
-				'placeholder' => $placeholder));
+				'placeholder' => $placeholder
+			)
+		);
 		if ($ifcounter == true) {
-			$html .= '<span class="input-group-addon" id="counterTitle">0</span>';
+			$html .= '<span class="input-group-addon" id="' . "#counter" . $name . '">0</span>';
+			$this->addJs("$('#" . $name . "').contarCaracteres('#counter" . $name . "');");
 		} else {
 			if (!$this->errors->isEmpty()){
 				$html .= '<span class="glyphicon ' . $inputIcon . ' form-control-feedback"></span>';
 			}
 		}
 		$html .= '</div>';
+		return $html;
+	}
+	public function headerSection($value='')	{
+		$html = '<div class="row">';
+		$html .= '<div class="col-md-12">';
+		$html .= '<h2>' . $h2 . '</h2>';
+		$html .= '<h5>' . $h5 . '</h5>';
+		$html .= '</div>';
+		$html .= '</div>';
+		$html .= '<hr />';
 		return $html;
 	}
 }
