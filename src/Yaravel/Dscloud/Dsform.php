@@ -31,13 +31,13 @@ class Dsform {
 		$html .= $this->errors();
 		return $html;
 	}
-	public function buttonSection($value='') {
-		$html  = $this->panelBodyClose;
-		$html .= $this->panelFooterStart;
+	public function buttonSection() {
+		$html  = $this->panelBodyClose();
+		$html .= $this->panelFooterStart();
 		return $html;
 	}
 	public function close($value='') {
-		$html  = $this->panelFooterClose;
+		$html  = $this->panelFooterClose();
 		$html .= '</div>';
 		$html .= Form::close();
 		$html .= '</div>';
