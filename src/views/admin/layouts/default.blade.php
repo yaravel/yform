@@ -1,4 +1,4 @@
-@extends('dscloud.admin.layouts.blank')
+@extends('packages.yaravel.dscloud.admin.layouts.blank')
 @section('contentMaster')
 	<div id="wrapper">
 		<nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
