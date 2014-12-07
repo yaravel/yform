@@ -23,8 +23,12 @@ class Yform {
 		$html  = '<div class="row">';
 		$html .= '<div class="col-md-12">';
 		$html .= Form::open(array('files' => $files));
-		if (!$this->errors->isEmpty()){
-			$style = 'danger';
+		if ($this->errors != null) {
+			if (!$this->errors->isEmpty()){
+				$style = 'danger';
+			} else {
+				$style = 'default';
+			}
 		} else {
 			$style = 'default';
 		}
@@ -49,13 +53,15 @@ class Yform {
 	}
 
 	public function errors(){
-		if (!$this->errors->isEmpty()){
-			$html = '<div class="alert alert-danger" role="alert">';
-			foreach ($this->errors->all() as $message){
-				$html .= $message . '<br>';
+		if ($this->errors != null) {
+			if (!$this->errors->isEmpty()){
+				$html = '<div class="alert alert-danger" role="alert">';
+				foreach ($this->errors->all() as $message){
+					$html .= $message . '<br>';
+				}
+				$html .= '</div>';
+				return $html;
 			}
-			$html .= '</div>';
-			return $html;
 		}
 	}
 
@@ -83,7 +89,7 @@ class Yform {
 		return $html;
 	}
 
-	public function input($input = 'text', $name, $placeholder, $options = array()) {
+	public function input($input = 'text', $name, $placeholder = null, $options = array(), $values = array(), $default = null) {
 		$class = '';
 		// Check if counter
 		if (array_key_exists('counter', $options)) {
@@ -100,14 +106,19 @@ class Yform {
 		if (!array_key_exists('class', $options)) {
 			$options['class'] = "form-control input-lg";
 		}
-		
-		if (!$this->errors->isEmpty()){
-			if ($this->errors->first($name)) {
-				$class .= 'has-error';
-				$inputIcon = 'glyphicon-remove';
-			} else {
-				$class .= 'has-success';
-				$inputIcon = 'glyphicon-ok';
+		// Check if exist placeholder
+		if ($placeholder != null) {
+			$options['placeholder'] = $placeholder;
+		}
+		if ($this->errors != null) {
+			if (!$this->errors->isEmpty()){
+				if ($this->errors->first($name)) {
+					$class .= 'has-error';
+					$inputIcon = 'glyphicon-remove';
+				} else {
+					$class .= 'has-success';
+					$inputIcon = 'glyphicon-ok';
+				}
 			}
 		}
 		if ($ifcounter == true) {
@@ -116,32 +127,40 @@ class Yform {
 			$class .= ' has-feedback';
 		}
 		$html  = '<div class="form-group ' . $class . '">';
-		$html .= Form::{$input}($name, Input::old(
+		if ($input == 'select') {
+			$secondVal = $values;
+		} else {
+			$secondVal = Input::old(
 				$name,
 				isset($this->values->{$name}) ? $this->values->{$name} : null
-			),
-			$options
+			);
+		}
+		$html .= Form::{$input}($name, $secondVal, $default, $options
 		);
 		if ($ifcounter == true) {
 			$html .= '<span class="input-group-addon" id="' . "counter" . $name . '">0</span>';
 			$this->addJs("$('#" . $name . "').contarCaracteres('#counter" . $name . "');");
 		} else {
-			if (!$this->errors->isEmpty()){
-				$html .= '<span class="glyphicon ' . $inputIcon . ' form-control-feedback"></span>';
+			if ($this->errors != null) {
+				if (!$this->errors->isEmpty()){
+					$html .= '<span class="glyphicon ' . $inputIcon . ' form-control-feedback"></span>';
+				}
 			}
 		}
 		$html .= '</div>';
 		return $html;
 	}
 
-	public function text($name, $placeholder, $options = array()) {
+	public function text($name, $placeholder = null, $options = array()) {
 		return $this->input('text', $name, $placeholder, $options);
 	}
 
 	public function textarea($name, $placeholder, $options = array()) {
 		return $this->input('textarea', $name, $placeholder, $options);
 	}
-
+	public function select($name, $values = array(), $default = null) {
+		return $this->input('select', $name, null, array(), $values, $default);
+	}
 	public function headerSection($h2 = 'Panel Administrador del Sitio Web', $h5 = 'Bienvenido Usuario.') {
 		$html = '<div class="row">';
 		$html .= '<div class="col-md-12">';
