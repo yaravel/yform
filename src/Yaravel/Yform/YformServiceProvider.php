@@ -28,13 +28,9 @@ class YformServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-        $this->app->bind('Dsform', function()
+        $this->app->bind('Yform', function()
         {
-            return new \Yaravel\Yform\Dsform;
-        });
-        $this->app->bind('Dsurl', function()
-        {
-            return new \Yaravel\Yform\Dsurl;
+            return new \Yaravel\Yform\Yform;
         });
 	}
 

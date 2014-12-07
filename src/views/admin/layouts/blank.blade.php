@@ -56,7 +56,7 @@
 		});
 		@yield('script')
 
-		{{ DSF::printJS() }}
+		{{ yform::printJS() }}
 	</script>
 </body>
 </html>

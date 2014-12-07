@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\HTML;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
-class Dsform {
+class Yform {
 
 	public $errors;
 	public $values;
