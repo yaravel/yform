@@ -89,7 +89,7 @@ class Yform {
 		return $html;
 	}
 
-	public function input($input = 'text', $name, $placeholder = null, $options = array(), $values = array(), $default = null) {
+	public function input($input = 'text', $name, $placeholder = null, $options = array(), $selectValues = array(), $selectDefault = null) {
 		$class = '';
 		// Check if counter
 		if (array_key_exists('counter', $options)) {
@@ -128,15 +128,14 @@ class Yform {
 		}
 		$html  = '<div class="form-group ' . $class . '">';
 		if ($input == 'select') {
-			$secondVal = $values;
+			$html .= Form::{$input}($name, $selectValues, $selectDefault, $options);
 		} else {
-			$secondVal = Input::old(
+			$oldValue = Input::old(
 				$name,
 				isset($this->values->{$name}) ? $this->values->{$name} : null
 			);
+			$html .= Form::{$input}($name, $oldValue, $options);
 		}
-		$html .= Form::{$input}($name, $secondVal, $default, $options
-		);
 		if ($ifcounter == true) {
 			$html .= '<span class="input-group-addon" id="' . "counter" . $name . '">0</span>';
 			$this->addJs("$('#" . $name . "').contarCaracteres('#counter" . $name . "');");
