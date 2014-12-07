@@ -1,5 +1,5 @@
 {
-    "name": "yaravel/dscloud",
+    "name": "yaravel/yform",
     "description": "",
     "authors": [
         {
@@ -16,7 +16,7 @@
             "src/migrations"
         ],
         "psr-0": {
-            "Yaravel\\Dscloud\\": "src/"
+            "Yaravel\\Yform\\": "src/"
         }
     },
     "minimum-stability": "stable"
