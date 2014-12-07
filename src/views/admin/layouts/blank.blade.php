@@ -5,14 +5,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Panel Administrador : </title>
 	<!-- BOOTSTRAP STYLES-->
-	<link href="{{asset('packages/yaravel/dscloud/admin/css/styles.css')}}" rel="stylesheet" />
+	<link href="{{asset('packages/yaravel/yform/admin/css/styles.css')}}" rel="stylesheet" />
 	<!-- FONTAWESOME STYLES-->
 	
 	<link href="{{asset('font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
 	<!-- MORRIS CHART STYLES-->
-	<link href="{{asset('packages/yaravel/dscloud/admin/js/morris/morris-0.4.3.min.css')}}" rel="stylesheet" />
+	<link href="{{asset('packages/yaravel/yform/admin/js/morris/morris-0.4.3.min.css')}}" rel="stylesheet" />
 	<link href="{{asset('assets/summernote/dist/summernote.css')}}" rel="stylesheet" />
-	<link href="{{asset('packages/yaravel/dscloud/admin/js/dataTables/dataTables.bootstrap.css')}}" rel="stylesheet" />
+	<link href="{{asset('packages/yaravel/yform/admin/js/dataTables/dataTables.bootstrap.css')}}" rel="stylesheet" />
 	@yield('style')
 </head>
 <body>
@@ -24,19 +24,19 @@
 	<!-- DS SCRIPTS -->
 	<script type="text/javascript" src="{{asset('assets/js/DS.js')}}"></script>
 	<!-- BOOTSTRAP SCRIPTS -->
-	<script type="text/javascript" src="{{asset('packages/yaravel/dscloud/admin/js/bootstrap.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('packages/yaravel/yform/admin/js/bootstrap.min.js')}}"></script>
 	<!-- METISMENU SCRIPTS -->
-	<script type="text/javascript" src="{{asset('packages/yaravel/dscloud/admin/js/jquery.metisMenu.js')}}"></script>
+	<script type="text/javascript" src="{{asset('packages/yaravel/yform/admin/js/jquery.metisMenu.js')}}"></script>
 	<!-- MORRIS CHART SCRIPTS -->
-	<script type="text/javascript" src="{{asset('packages/yaravel/dscloud/admin/js/morris/raphael-2.1.0.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('packages/yaravel/yform/admin/js/morris/raphael-2.1.0.min.js')}}"></script>
 
 	<script type="text/javascript" src="{{asset('assets/summernote/dist/summernote.js')}}"></script>
 
-	<script type="text/javascript" src="{{asset('packages/yaravel/dscloud/admin/js/dataTables/jquery.dataTables.js')}}"></script>
-	<script type="text/javascript" src="{{asset('packages/yaravel/dscloud/admin/js/dataTables/dataTables.bootstrap.js')}}"></script>
-	{{--<script type="text/javascript" src="{{asset('packages/yaravel/dscloud/admin/js/morris/morris.js')}}"></script>--}}
+	<script type="text/javascript" src="{{asset('packages/yaravel/yform/admin/js/dataTables/jquery.dataTables.js')}}"></script>
+	<script type="text/javascript" src="{{asset('packages/yaravel/yform/admin/js/dataTables/dataTables.bootstrap.js')}}"></script>
+	{{--<script type="text/javascript" src="{{asset('packages/yaravel/yform/admin/js/morris/morris.js')}}"></script>--}}
 	<!-- CUSTOM SCRIPTS -->
-	<script src="{{asset('packages/yaravel/dscloud/admin/js/custom.js')}}"></script>
+	<script src="{{asset('packages/yaravel/yform/admin/js/custom.js')}}"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			<?php $SelectVM = isset($SelectVM) ? $SelectVM : 'nav-home' ?>

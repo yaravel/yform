@@ -1,8 +1,8 @@
-<?php namespace Yaravel\Dscloud;
+<?php namespace Yaravel\Yform;
 
 use Illuminate\Support\ServiceProvider;
 
-class DscloudServiceProvider extends ServiceProvider {
+class YformServiceProvider extends ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -18,7 +18,7 @@ class DscloudServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('yaravel/dscloud');
+		$this->package('yaravel/yform');
 	}
 
 	/**
@@ -30,11 +30,11 @@ class DscloudServiceProvider extends ServiceProvider {
 	{
         $this->app->bind('Dsform', function()
         {
-            return new \Yaravel\Dscloud\Dsform;
+            return new \Yaravel\Yform\Dsform;
         });
         $this->app->bind('Dsurl', function()
         {
-            return new \Yaravel\Dscloud\Dsurl;
+            return new \Yaravel\Yform\Dsurl;
         });
 	}
 
@@ -45,7 +45,7 @@ class DscloudServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array('dscloud');
+		return array('yform');
 	}
 
 }

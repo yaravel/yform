@@ -1,5 +1,5 @@
 <?php
-namespace Yaravel\Dscloud\Facades;
+namespace Yaravel\Yform\Facades;
 use Illuminate\Support\Facades\Facade;
 
 class DSF extends Facade {

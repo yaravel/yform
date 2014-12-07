@@ -1,5 +1,5 @@
 <?php
-namespace Yaravel\Dscloud;
+namespace Yaravel\Yform;
 use Illuminate\Support\Facades\Form;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\HTML;

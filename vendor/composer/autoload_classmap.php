@@ -58,7 +58,7 @@ return array(
     'Illuminate\\Support\\Traits\\CapsuleManagerTrait' => $vendorDir . '/illuminate/support/Illuminate/Support/Traits/CapsuleManagerTrait.php',
     'Illuminate\\Support\\Traits\\MacroableTrait' => $vendorDir . '/illuminate/support/Illuminate/Support/Traits/MacroableTrait.php',
     'Illuminate\\Support\\ViewErrorBag' => $vendorDir . '/illuminate/support/Illuminate/Support/ViewErrorBag.php',
-    'Yaravel\\Dscloud\\DscloudServiceProvider' => $baseDir . '/src/Yaravel/Dscloud/DscloudServiceProvider.php',
-    'Yaravel\\Dscloud\\Dsform' => $baseDir . '/src/Yaravel/Dscloud/Dsform.php',
-    'Yaravel\\Dscloud\\Facades\\DSF' => $baseDir . '/src/Yaravel/Dscloud/Facades/Dsform.php',
+    'Yaravel\\Yform\\YformServiceProvider' => $baseDir . '/src/Yaravel/Yform/YformServiceProvider.php',
+    'Yaravel\\Yform\\Dsform' => $baseDir . '/src/Yaravel/Yform/Dsform.php',
+    'Yaravel\\Yform\\Facades\\DSF' => $baseDir . '/src/Yaravel/Yform/Facades/Dsform.php',
 );

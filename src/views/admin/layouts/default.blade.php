@@ -1,4 +1,4 @@
-@extends('packages.yaravel.dscloud.admin.layouts.blank')
+@extends('packages.yaravel.yform.admin.layouts.blank')
 @section('contentMaster')
 	<div id="wrapper">
 		<nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
@@ -19,7 +19,7 @@
 		<!-- /. NAV TOP  -->
 		<nav class="navbar-default navbar-side" role="navigation">
 			<div class="sidebar-collapse">
-				@include('dscloud.admin.menu.' . Auth::user()->rowclient)
+				@include('yform.admin.menu.' . Auth::user()->rowclient)
 			</div>
 
 		</nav>

@@ -6,6 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Yaravel\\Dscloud\\' => array($baseDir . '/src'),
+    'Yaravel\\Yform\\' => array($baseDir . '/src'),
     'Illuminate\\Support' => array($vendorDir . '/illuminate/support'),
 );
