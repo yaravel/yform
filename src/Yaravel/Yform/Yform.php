@@ -128,7 +128,11 @@ class Yform {
 		}
 		$html  = '<div class="form-group ' . $class . '">';
 		if ($input == 'select') {
-			$html .= Form::{$input}($name, $selectValues, $selectDefault, $options);
+			$oldValue = Input::old(
+				$name,
+				isset($this->values->{$name}) ? $this->values->{$name} : null
+			);
+			$html .= Form::{$input}($name, $selectValues, $oldValue, $options);
 		} else {
 			$oldValue = Input::old(
 				$name,
@@ -151,14 +155,32 @@ class Yform {
 	}
 
 	public function text($name, $placeholder = null, $options = array()) {
-		return $this->input('text', $name, $placeholder, $options);
+		return $this->input(
+			'text',
+			$name,
+			$placeholder,
+			$options
+		);
 	}
 
 	public function textarea($name, $placeholder, $options = array()) {
-		return $this->input('textarea', $name, $placeholder, $options);
+		return $this->input(
+			'textarea',
+			$name,
+			$placeholder,
+			$options
+		);
 	}
-	public function select($name, $values = array(), $default = null) {
-		return $this->input('select', $name, null, array(), $values, $default);
+	
+	public function select($name, $values = array(), $options = array()) {
+		return $this->input(
+			'select',	// Tipe input
+			$name,		// Name input
+			null,		// Placeholder null
+			$options,	// Tags Options
+			$values,	// Array values Select
+			null		// Select Default Value
+		);
 	}
 	public function headerSection($h2 = 'Panel Administrador del Sitio Web', $h5 = 'Bienvenido Usuario.') {
 		$html = '<div class="row">';
