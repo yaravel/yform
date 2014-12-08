@@ -89,7 +89,7 @@ class Yform {
 		return $html;
 	}
 
-	public function input($input = 'text', $name, $placeholder = null, $options = array(), $selectValues = array(), $selectDefault = null) {
+	public function input($input = 'text', $name, $placeholder = null, $options = [], $selectValues = [], $selectDefault = null) {
 		$class = '';
 		// Check if counter
 		if (array_key_exists('counter', $options)) {
@@ -105,6 +105,10 @@ class Yform {
 		// Check if class
 		if (!array_key_exists('class', $options)) {
 			$options['class'] = "form-control input-lg";
+		}
+		// Check if exist id
+		if (!array_key_exists('id', $options)) {
+			$options['id'] = $name;
 		}
 		// Check if exist placeholder
 		if ($placeholder != null) {
@@ -141,8 +145,8 @@ class Yform {
 			$html .= Form::{$input}($name, $oldValue, $options);
 		}
 		if ($ifcounter == true) {
-			$html .= '<span class="input-group-addon" id="' . "counter" . $name . '">0</span>';
-			$this->addJs("$('#" . $name . "').contarCaracteres('#counter" . $name . "');");
+			$html .= '<span class="input-group-addon" id="' . "counter" . $options['id'] . '">0</span>';
+			$this->addJs("$('#" . $name . "').contarCaracteres('#counter" . $options['id'] . "');");
 		} else {
 			if ($this->errors != null) {
 				if (!$this->errors->isEmpty()){
@@ -154,7 +158,7 @@ class Yform {
 		return $html;
 	}
 
-	public function text($name, $placeholder = null, $options = array()) {
+	public function text($name, $placeholder = null, $options = []) {
 		return $this->input(
 			'text',
 			$name,
@@ -163,7 +167,7 @@ class Yform {
 		);
 	}
 
-	public function textarea($name, $placeholder, $options = array()) {
+	public function textarea($name, $placeholder, $options = []) {
 		return $this->input(
 			'textarea',
 			$name,
@@ -171,8 +175,8 @@ class Yform {
 			$options
 		);
 	}
-	
-	public function select($name, $values = array(), $options = array()) {
+
+	public function select($name, $values = [], $options = []) {
 		return $this->input(
 			'select',	// Tipe input
 			$name,		// Name input
