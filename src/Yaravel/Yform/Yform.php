@@ -89,30 +89,30 @@ class Yform {
 		return $html;
 	}
 
-	public function input($input = 'text', $name, $placeholder = null, $options = [], $selectValues = [], $selectDefault = null) {
+	public function input($input = 'text', $name, $placeholder = null, $attributes = [], $selectValues = [], $defaultValue = null) {
 		$class = '';
 		// Check if counter
-		if (array_key_exists('counter', $options)) {
-			if ($options['counter'] == 1) {
+		if (array_key_exists('counter', $attributes)) {
+			if ($attributes['counter'] == 1) {
 				$ifcounter = true;
 			} else {
 				$ifcounter = false;
 			}
-			unset($options['counter']);
+			unset($attributes['counter']);
 		} else {
 			$ifcounter = false;
 		}
 		// Check if class
-		if (!array_key_exists('class', $options)) {
-			$options['class'] = "form-control input-lg";
+		if (!array_key_exists('class', $attributes)) {
+			$attributes['class'] = "form-control input-lg";
 		}
 		// Check if exist id
-		if (!array_key_exists('id', $options)) {
-			$options['id'] = $name;
+		if (!array_key_exists('id', $attributes)) {
+			$attributes['id'] = $name;
 		}
 		// Check if exist placeholder
 		if ($placeholder != null) {
-			$options['placeholder'] = $placeholder;
+			$attributes['placeholder'] = $placeholder;
 		}
 		if ($this->errors != null) {
 			if (!$this->errors->isEmpty()){
@@ -131,22 +131,26 @@ class Yform {
 			$class .= ' has-feedback';
 		}
 		$html  = '<div class="form-group ' . $class . '">';
-		if ($input == 'select') {
-			$oldValue = Input::old(
+		if ($defaultValue == null) {
+			$defaultValue = Input::old(
 				$name,
 				isset($this->values->{$name}) ? $this->values->{$name} : null
 			);
-			$html .= Form::{$input}($name, $selectValues, $oldValue, $options);
 		} else {
-			$oldValue = Input::old(
+			$defaultValue = Input::old(
 				$name,
-				isset($this->values->{$name}) ? $this->values->{$name} : null
+				isset($defaultValue) ? $defaultValue : null
 			);
-			$html .= Form::{$input}($name, $oldValue, $options);
+		}
+		
+		if ($input == 'select') {
+			$html .= Form::{$input}($name, $selectValues, $defaultValue, $attributes);
+		} else {
+			$html .= Form::{$input}($name, $defaultValue, $attributes);
 		}
 		if ($ifcounter == true) {
-			$html .= '<span class="input-group-addon" id="' . "counter" . $options['id'] . '">0</span>';
-			$this->addJs("$('#" . $name . "').contarCaracteres('#counter" . $options['id'] . "');");
+			$html .= '<span class="input-group-addon" id="' . "counter" . $attributes['id'] . '">0</span>';
+			$this->addJs("$('#" . $name . "').contarCaracteres('#counter" . $attributes['id'] . "');");
 		} else {
 			if ($this->errors != null) {
 				if (!$this->errors->isEmpty()){
@@ -158,32 +162,32 @@ class Yform {
 		return $html;
 	}
 
-	public function text($name, $placeholder = null, $options = []) {
+	public function text($name, $placeholder = null, $attributes = [], $defaultValue = null) {
 		return $this->input(
 			'text',
 			$name,
 			$placeholder,
-			$options
+			$attributes
 		);
 	}
 
-	public function textarea($name, $placeholder, $options = []) {
+	public function textarea($name, $placeholder, $attributes = [], $defaultValue = null) {
 		return $this->input(
 			'textarea',
 			$name,
 			$placeholder,
-			$options
+			$attributes
 		);
 	}
 
-	public function select($name, $values = [], $options = []) {
+	public function select($name, $values = [], $attributes = [], $defaultValue = null) {
 		return $this->input(
 			'select',	// Tipe input
 			$name,		// Name input
 			null,		// Placeholder null
-			$options,	// Tags Options
+			$attributes,	// Tags Options
 			$values,	// Array values Select
-			null		// Select Default Value
+			$defaultValue		// Select Default Value
 		);
 	}
 	public function headerSection($h2 = 'Panel Administrador del Sitio Web', $h5 = 'Bienvenido Usuario.') {
