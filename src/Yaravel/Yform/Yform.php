@@ -102,6 +102,13 @@ class Yform {
 		} else {
 			$ifcounter = false;
 		}
+		if (array_key_exists('icon', $attributes)) {
+			$icon = $attributes['icon'];
+			$class .= ' input-group';
+			unset($attributes['icon']);
+		} else {
+			$icon = false;
+		}
 		// Check if class
 		if (!array_key_exists('class', $attributes)) {
 			$attributes['class'] = "form-control input-lg";
@@ -142,7 +149,11 @@ class Yform {
 				isset($defaultValue) ? $defaultValue : null
 			);
 		}
-		
+
+		// add icon
+		if ($icon != false) {
+			$html .= '<div class="input-group-addon"><i class="' . $icon . '"></i></div>';
+		}
 		if ($input == 'select') {
 			$html .= Form::{$input}($name, $selectValues, $defaultValue, $attributes);
 		} else {
