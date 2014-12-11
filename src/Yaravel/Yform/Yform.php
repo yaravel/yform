@@ -200,5 +200,10 @@ class Yform {
 		$html .= '<hr />';
 		return $html;
 	}
+
+	public function submit($text = "submit") {
+		$html = Form::submit($text, ['class' => "btn btn-primary btn-lg"]);
+		return $html;
+	}
 }
 ?>
