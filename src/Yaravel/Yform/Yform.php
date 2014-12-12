@@ -89,7 +89,7 @@ class Yform {
 		return $html;
 	}
 
-	public function input($input = 'text', $name, $placeholder = null, $attributes = [], $selectValues = [], $defaultValue = null) {
+	public function input($input = 'text', $name, $placeholder = null, $attributes = [], $selectValues = [], $selected = null) {
 		$class = '';
 		// Check if counter
 		if (array_key_exists('counter', $attributes)) {
@@ -138,15 +138,16 @@ class Yform {
 			$class .= ' has-feedback';
 		}
 		$html  = '<div class="form-group ' . $class . '">';
-		if ($defaultValue == null) {
-			$defaultValue = Input::old(
+		isset($attributes['value']) ? $selected = $attributes['value'] : null;
+		if ($selected == null) {
+			$selected = Input::old(
 				$name,
 				isset($this->values->{$name}) ? $this->values->{$name} : null
 			);
 		} else {
-			$defaultValue = Input::old(
+			$selected = Input::old(
 				$name,
-				isset($defaultValue) ? $defaultValue : null
+				isset($selected) ? $selected : null
 			);
 		}
 
@@ -155,9 +156,9 @@ class Yform {
 			$html .= '<div class="input-group-addon"><i class="' . $icon . '"></i></div>';
 		}
 		if ($input == 'select') {
-			$html .= Form::{$input}($name, $selectValues, $defaultValue, $attributes);
+			$html .= Form::{$input}($name, $selectValues, $selected, $attributes);
 		} else {
-			$html .= Form::{$input}($name, $defaultValue, $attributes);
+			$html .= Form::{$input}($name, $selected, $attributes);
 		}
 		if ($ifcounter == true) {
 			$html .= '<span class="input-group-addon" id="' . "counter" . $attributes['id'] . '">0</span>';
@@ -173,7 +174,7 @@ class Yform {
 		return $html;
 	}
 
-	public function text($name, $placeholder = null, $attributes = [], $defaultValue = null) {
+	public function text($name, $placeholder = null, $attributes = []) {
 		return $this->input(
 			'text',
 			$name,
@@ -182,7 +183,7 @@ class Yform {
 		);
 	}
 
-	public function textarea($name, $placeholder, $attributes = [], $defaultValue = null) {
+	public function textarea($name, $placeholder, $attributes = []) {
 		return $this->input(
 			'textarea',
 			$name,
@@ -191,14 +192,14 @@ class Yform {
 		);
 	}
 
-	public function select($name, $values = [], $attributes = [], $defaultValue = null) {
+	public function select($name, $values = [], $attributes = [], $selected = null) {
 		return $this->input(
-			'select',	// Tipe input
-			$name,		// Name input
-			null,		// Placeholder null
+			'select',		// Tipe input
+			$name,			// Name input
+			null,			// Placeholder null
 			$attributes,	// Tags Options
-			$values,	// Array values Select
-			$defaultValue		// Select Default Value
+			$values,		// Array values Select
+			$selected		// Select Default Value
 		);
 	}
 	public function headerSection($h2 = 'Panel Administrador del Sitio Web', $h5 = 'Bienvenido Usuario.') {
