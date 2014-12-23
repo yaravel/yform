@@ -17,12 +17,12 @@ class Yform {
 	public function printJS($value='') {
 		return $this->js;
 	}
-	public function init($header = 'Titulo Form', $files = false, $values, $errors){
+	public function init($header = 'Titulo Form', $form, $values, $errors){
 		$this->errors = $errors;
 		$this->values = $values;
 		$html  = '<div class="row">';
 		$html .= '<div class="col-md-12">';
-		$html .= Form::open(array('files' => $files));
+		$html .= Form::open($form);
 		if ($this->errors != null) {
 			if (!$this->errors->isEmpty()){
 				$style = 'danger';
