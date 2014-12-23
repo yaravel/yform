@@ -957,3 +957,4 @@ p{font-size:16px;line-height:25px;padding-top:20px}
 @media (min-width:768px){#page-wrapper{margin:0 0 0 260px;padding:15px 30px;min-height:1200px} .navbar-side{z-index:1;position:absolute;width:260px} .navbar{border-radius:0}}@media only screen and (min-width:800px){.table tbody tr .actions{visibility:hidden} .table tbody tr:hover .actions{visibility:visible} .table .titulo{width:50%}}.form-control-feedback{top:2px}
 #files{display:none}
 #drop_zone{border:2px dashed #bbb;border-radius:5px;color:#bbb;padding:25px;text-align:center}
+.thumb{height:75px;border:1px solid #000;margin:10px 5px 0 0}
