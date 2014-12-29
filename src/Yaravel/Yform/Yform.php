@@ -194,15 +194,40 @@ class Yform {
 
 	public function select($name, $values = [], $attributes = [], $selected = null) {
 		return $this->input(
-			'select',		// Tipe input
-			$name,			// Name input
-			null,			// Placeholder null
-			$attributes,	// Tags Options
-			$values,		// Array values Select
-			$selected		// Select Default Value
-		);
+		'select',		// Tipe input
+		$name,			// Name input
+		null,			// Placeholder null
+		$attributes,	// Tags Options
+		$values,		// Array values Select
+		$selected		// Select Default Value
+	);
+}
+public function file($name, $values = [], $attributes = []) {
+	$class = "";
+	if ($this->errors != null) {
+		if (!$this->errors->isEmpty()){
+			if ($this->errors->first($name)) {
+				$class = 'has-error';
+			} else {
+				$class = 'has-success';
+			}
+		}
 	}
-	public function headerSection($h2 = 'Panel Administrador del Sitio Web', $h5 = 'Bienvenido Usuario.') {
+	$html = '<div class="fileinput fileinput-new input-group ' . $class . '" data-provides="fileinput">';
+	$html .= '<div class="form-control" data-trigger="fileinput">';
+	$html .= '<i class="glyphicon glyphicon-file fileinput-exists"></i>';
+	$html .= '<span class="fileinput-filename"></span>';
+	$html .= '</div>';
+	$html .= '<span class="input-group-addon btn btn-default btn-file">';
+	$html .= '<span class="fileinput-new">Seleccionar Archivo</span>';
+	$html .= '<span class="fileinput-exists">Cambiar</span>';
+	$html .= '<input type="file" name="' . $name . '">';
+	$html .= '</span>';
+	$html .= '<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>';
+	$html .= '</div>';
+	return $html;
+}
+public function headerSection($h2 = 'Panel Administrador del Sitio Web', $h5 = 'Bienvenido Usuario.') {
 		$html = '<div class="row">';
 		$html .= '<div class="col-md-12">';
 		$html .= '<h2>' . $h2 . '</h2>';
