@@ -58,7 +58,9 @@ return array(
     'Illuminate\\Support\\Traits\\CapsuleManagerTrait' => $vendorDir . '/illuminate/support/Illuminate/Support/Traits/CapsuleManagerTrait.php',
     'Illuminate\\Support\\Traits\\MacroableTrait' => $vendorDir . '/illuminate/support/Illuminate/Support/Traits/MacroableTrait.php',
     'Illuminate\\Support\\ViewErrorBag' => $vendorDir . '/illuminate/support/Illuminate/Support/ViewErrorBag.php',
+    'Yaravel\\Yform\\Facades\\yfile' => $baseDir . '/src/Yaravel/Yform/Facades/Yfile.php',
     'Yaravel\\Yform\\Facades\\yform' => $baseDir . '/src/Yaravel/Yform/Facades/Yform.php',
+    'Yaravel\\Yform\\Yfile' => $baseDir . '/src/Yaravel/Yform/Yfile.php',
     'Yaravel\\Yform\\Yform' => $baseDir . '/src/Yaravel/Yform/Yform.php',
     'Yaravel\\Yform\\YformServiceProvider' => $baseDir . '/src/Yaravel/Yform/YformServiceProvider.php',
 );
