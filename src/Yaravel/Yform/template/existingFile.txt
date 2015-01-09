@@ -1,0 +1,14 @@
+<div class="input-group has-warning" id="fileOld">
+	<a class="input-group-addon" target="_blank" href="$fileLocation$">
+		<i class="glyphicon glyphicon-file"></i>
+	</a>
+	<input type="text" class="form-control input-lg" disabled="disabled" value="$fileName$">
+	<span class="input-group-btn">
+		<button class="btn btn-default btn-lg btn-warning" type="button" onclick="borrar()">
+			<i class="fa fa-times"></i> Borrar
+		</button>
+	</span>
+</div>
+<div id="fileNew">
+
+</div>

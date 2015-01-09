@@ -242,5 +242,12 @@ public function headerSection($h2 = 'Panel Administrador del Sitio Web', $h5 = '
 		$html = Form::submit($text, ['class' => "btn btn-primary btn-lg"]);
 		return $html;
 	}
+
+	public function existingFile($fileName, $fileLocation){
+		$contents = file_get_contents( __DIR__ . '/template/existingFile.txt');
+		$vars = [ '$fileName$', '$fileLocation$' ];
+		$values = [ $fileName, $fileLocation ];
+		return str_replace($vars, $values, $contents);
+	}
 }
 ?>
