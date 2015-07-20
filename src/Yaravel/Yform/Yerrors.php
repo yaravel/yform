@@ -4,7 +4,7 @@ namespace Yaravel\Yform;
 use Illuminate\Support\Facades\Session;
 class Yerrors {
 
-	const DEFAULT_MESSAGE = 9
+	const DEFAULT_MESSAGE = 9;
 
 	private $errors;
 
