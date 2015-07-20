@@ -4,7 +4,6 @@ namespace Yaravel\Yform;
 use Illuminate\Support\Facades\Session;
 class Yerrors {
 
-	const DEFAULT_MESSAGE = 9;
 
 	private $errors;
 
@@ -12,12 +11,12 @@ class Yerrors {
 		$this->errors = Session::get('errors');
 	}
 
-	public function first($key = null, $message1 = self::DEFAULT_MESSAGE, $message2 = self::DEFAULT_MESSAGE) {
+	public function first($key = null, $message1 = true, $message2 = true) {
 		if (count($this->errors) > 0) {
 			if($this->errors->has($key)){
-				return $message1==self::DEFAULT_MESSAGE ? 'has-error' : $message1;
+				return $message1 == true ? 'has-error' : $message1;
 			} else {
-				return $message2==self::DEFAULT_MESSAGE ? 'has-success' : $message2;
+				return $message2 == true ? 'has-success' : $message2;
 			}
 		}
 	}
