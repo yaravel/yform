@@ -32,6 +32,10 @@ class YformServiceProvider extends ServiceProvider {
 		{
 			return new \Yaravel\Yform\Yform;
 		});
+		$this->app->bind('Yerrors', function()
+		{
+			return new \Yaravel\Yform\Yerrors;
+		});
 	}
 
 	/**
@@ -41,7 +45,7 @@ class YformServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array('yform');
+		return ['yform', 'yerrors'];
 	}
 
 }
