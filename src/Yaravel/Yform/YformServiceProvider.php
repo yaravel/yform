@@ -18,7 +18,7 @@ class YformServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('yaravel/yform');
+		$this->app->register('Yaravel\Yform\YformServiceProvider');
 	}
 
 	/**
