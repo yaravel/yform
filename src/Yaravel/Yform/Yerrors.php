@@ -13,9 +13,9 @@ class Yerrors {
 	public function first($key = null, $message1 = null, $message2 = null) {
 		if (count($this->errors) > 0) {
 			if($this->errors->has($key)){
-				return $message1;
+				return $message1==null ? 'has-error' : $message1;
 			} else {
-				return $message2;
+				return $message2==null ? 'has-success' : $message2;
 			}
 		}
 	}
